@@ -34,4 +34,4 @@ services:
 
 networks:
   default:
-    name: blogs_api_net
+    # name: blogs_api_net
