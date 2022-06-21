@@ -8,7 +8,7 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         primaryKey: true,
-        field: 'post_id',
+        field: 'postId',
         references: {
           model: 'BlogPosts',
           key: 'id'
@@ -20,7 +20,7 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         primaryKey: true,
-        field: 'category_id',
+        field: 'categoryId',
         references: {
           model: 'Categories',
           key: 'id'
