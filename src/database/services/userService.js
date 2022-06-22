@@ -8,6 +8,13 @@ const getUser = async (email) => {
   return user;
 };
 
+const getAllUsers = async () => {
+  const users = await User.findAll({
+    attributes: { exclude: ['password'] },
+  });
+  return users;
+};
+
 const createUser = async ({ 
   displayName,
   email,
@@ -21,16 +28,4 @@ const createUser = async ({
     image,
   });
 
-// const checkUniqueEmail = async (email) => {
-//   const uniqueEmail = await User.findOne({
-//     attributes: ['email'],
-//     where: { email },
-//   });
-//   // return uniqueEmail.length;
-//   if (uniqueEmail) {
-//     const errorMessage = { status: 409, message: 'User already registered' };
-//     throw errorMessage;
-//   }
-// };
-
-module.exports = { createUser, getUser };
+module.exports = { createUser, getAllUsers, getUser };
