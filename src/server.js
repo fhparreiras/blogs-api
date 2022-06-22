@@ -12,6 +12,7 @@ const port = process.env.API_PORT || 3000;
 app.get('/', (_request, response) => {
   response.send();
 });
+app.get('/user/:id', authenticationMiddleware, routes.getUserById, errorHandler);
 app.get('/user', authenticationMiddleware, routes.getUser, errorHandler);
 
 app.post('/login', routes.login);
