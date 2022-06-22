@@ -17,5 +17,6 @@ app.get('/user', authenticationMiddleware, routes.getUser, errorHandler);
 
 app.post('/login', routes.login);
 app.post('/user', checkEmailFormat, routes.user, errorHandler);
+app.post('/categories', authenticationMiddleware, routes.category, errorHandler);
 
 app.listen(port, () => console.log('ouvindo porta', port));
