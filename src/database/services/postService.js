@@ -1,5 +1,5 @@
 const { getAllCategories } = require('./categoryService');
-const { BlogPost } = require('../models');
+const { BlogPost, PostCategory } = require('../models');
 
 const categoryExists = async (categoryIds) => {
   const categoriesArr = await getAllCategories();
@@ -18,13 +18,22 @@ const categoryExists = async (categoryIds) => {
   }
 };
   
-const createPost = async (title, content, userId) => BlogPost.create(
-  { title, 
-    content,
-    userId,
-    published: new Date(),
-    updated: new Date(),
-  },
+const createPost = async (title, content, userId, categoryIds) => {
+  const result = await BlogPost.create(
+    { title, 
+      content,
+      userId,
+      published: new Date(),
+      updated: new Date(),
+    },
   );
+  categoryIds.forEach((categoryId) => PostCategory.create(
+  {
+    postId: result.id,
+    categoryId,
+  },
+  ));
+  return result;
+};
 
 module.exports = { categoryExists, createPost };

@@ -10,6 +10,6 @@ module.exports = async (req, res) => {
   const token = req.headers.authorization;
   const decodedToken = decodeToken(token);
   const userId = decodedToken.id;
-  const blogPost = await createPost(title, content, userId);
+  const blogPost = await createPost(title, content, userId, categoryIds);
   return res.status(201).json(blogPost);
 };
