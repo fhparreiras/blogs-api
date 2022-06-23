@@ -3,6 +3,7 @@ const getCategory = require('./database/controllers/getCategoryController');
 const getUser = require('./database/controllers/getUserController');
 const getUserById = require('./database/controllers/getByIdController');
 const login = require('./database/controllers/loginController');
+const post = require('./database/controllers/postController');
 const user = require('./database/controllers/userController');
 
 module.exports = {
@@ -11,5 +12,6 @@ module.exports = {
   getUser,
   getUserById,
   login,
+  post,
   user,
 };

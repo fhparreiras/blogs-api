@@ -23,7 +23,10 @@ const validateToken = async (token) => {
   }
 };
 
+const decodeToken = (token) => jwt.decode(token);
+
 module.exports = {
+  decodeToken,
   generateJWT,
   validateToken,
 };
