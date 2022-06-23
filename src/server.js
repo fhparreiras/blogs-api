@@ -15,6 +15,7 @@ app.get('/', (_request, response) => {
 app.get('/user/:id', authenticationMiddleware, routes.getUserById, errorHandler);
 app.get('/user', authenticationMiddleware, routes.getUser, errorHandler);
 app.get('/categories', authenticationMiddleware, routes.getCategory, errorHandler);
+app.get('/post', authenticationMiddleware, routes.getPost, errorHandler);
 
 app.post('/login', routes.login);
 app.post('/user', checkEmailFormat, routes.user, errorHandler);
