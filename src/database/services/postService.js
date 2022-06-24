@@ -61,12 +61,21 @@ const getPostById = async (id) => {
   return posts;
 };
 
-const updatePost = async (postId, userId, body) => {
+const isAuthorized = async (postId, userId) => {
   const postData = await getPostById(postId);
   if (postData.user.id !== userId) {
     const errorMessage = { status: 401, message: 'Unauthorized user' };
     throw errorMessage;
   }
+};
+
+const updatePost = async (postId, userId, body) => {
+  // const postData = await getPostById(postId);
+  // if (postData.user.id !== userId) {
+  //   const errorMessage = { status: 401, message: 'Unauthorized user' };
+  //   throw errorMessage;
+  // }
+  await isAuthorized(postId, userId);
   const { title, content } = body;
   if (!title || !content) {
     const errorMessage = { status: 400, message: 'Some required fields are missing' };
@@ -78,4 +87,9 @@ const updatePost = async (postId, userId, body) => {
   return updatedPost;
 };
 
-module.exports = { categoryExists, createPost, getAllPosts, getPostById, updatePost };
+const deletePost = async (postId, userId) => {
+  await isAuthorized(postId, userId);
+  await BlogPost.destroy({ where: { id: postId } });
+};
+
+module.exports = { categoryExists, createPost, deletePost, getAllPosts, getPostById, updatePost };

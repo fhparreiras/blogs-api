@@ -23,6 +23,8 @@ app.post('/user', checkEmailFormat, routes.user, errorHandler);
 app.post('/categories', authenticationMiddleware, routes.category, errorHandler);
 app.post('/post', authenticationMiddleware, routes.post, errorHandler);
 
-app.put('/post/:id', authenticationMiddleware, routes.putPostId, errorHandler);
+app.put('/post/:id', authenticationMiddleware, routes.putPost, errorHandler);
+
+app.delete('/post/:id', authenticationMiddleware, routes.deletePost, errorHandler);
 
 app.listen(port, () => console.log('ouvindo porta', port));
