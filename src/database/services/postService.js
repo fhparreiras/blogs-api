@@ -61,4 +61,21 @@ const getPostById = async (id) => {
   return posts;
 };
 
-module.exports = { categoryExists, createPost, getAllPosts, getPostById };
+const updatePost = async (postId, userId, body) => {
+  const postData = await getPostById(postId);
+  if (postData.user.id !== userId) {
+    const errorMessage = { status: 401, message: 'Unauthorized user' };
+    throw errorMessage;
+  }
+  const { title, content } = body;
+  if (!title || !content) {
+    const errorMessage = { status: 400, message: 'Some required fields are missing' };
+    throw errorMessage;
+  }
+  await BlogPost.update({ title, content, updated: new Date() },
+    { where: { id: postId } });
+  const updatedPost = await getPostById(postId);
+  return updatedPost;
+};
+
+module.exports = { categoryExists, createPost, getAllPosts, getPostById, updatePost };
