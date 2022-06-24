@@ -39,4 +39,8 @@ const createUser = async ({
     image,
   });
 
-module.exports = { createUser, getAllUsers, getUser, getUserById };
+const deleteUserMe = async (myId) => {
+  await User.destroy({ where: { id: myId } });
+};
+
+module.exports = { createUser, deleteUserMe, getAllUsers, getUser, getUserById };

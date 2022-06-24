@@ -26,5 +26,6 @@ app.post('/post', authenticationMiddleware, routes.post, errorHandler);
 app.put('/post/:id', authenticationMiddleware, routes.putPost, errorHandler);
 
 app.delete('/post/:id', authenticationMiddleware, routes.deletePost, errorHandler);
+app.delete('/user/me', authenticationMiddleware, routes.deleteMe, errorHandler);
 
 app.listen(port, () => console.log('ouvindo porta', port));

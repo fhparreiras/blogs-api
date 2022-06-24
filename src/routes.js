@@ -1,5 +1,6 @@
 const category = require('./database/controllers/categoryController');
 const deletePost = require('./database/controllers/deletePostController');
+const deleteMe = require('./database/controllers/deleteMeController');
 const getCategory = require('./database/controllers/getCategoryController');
 const getPost = require('./database/controllers/getPostController');
 const getPostById = require('./database/controllers/getPostByIdController');
@@ -12,6 +13,7 @@ const user = require('./database/controllers/userController');
 
 module.exports = {
   category,
+  deleteMe,
   deletePost,
   getCategory,
   getPost,
