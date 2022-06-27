@@ -9,6 +9,7 @@ const getUserById = require('./database/controllers/getByIdController');
 const login = require('./database/controllers/loginController');
 const post = require('./database/controllers/postController');
 const putPost = require('./database/controllers/putPostController');
+const searchPost = require('./database/controllers/searchPostController');
 const user = require('./database/controllers/userController');
 
 module.exports = {
@@ -23,5 +24,6 @@ module.exports = {
   login,
   post,
   putPost,
+  searchPost,
   user,
 };

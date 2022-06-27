@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const { getAllCategories } = require('./categoryService');
 const { BlogPost, Category, PostCategory, User } = require('../models');
 
@@ -61,6 +62,24 @@ const getPostById = async (id) => {
   return posts;
 };
 
+const getByTerm = async (query) => {
+  const myQuery = { [Op.like]: `%${query}%` };
+  const result = await BlogPost.findAll({
+    where: {
+      [Op.or]: [
+        { title: myQuery },
+        { content: myQuery },
+      ],
+    },
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories' },
+    ], 
+});
+  // console.log('RESULT DO GET BY TERM: ', result);
+  return result;
+}; 
+
 const isAuthorized = async (postId, userId) => {
   const postData = await getPostById(postId);
   if (postData.user.id !== userId) {
@@ -70,11 +89,6 @@ const isAuthorized = async (postId, userId) => {
 };
 
 const updatePost = async (postId, userId, body) => {
-  // const postData = await getPostById(postId);
-  // if (postData.user.id !== userId) {
-  //   const errorMessage = { status: 401, message: 'Unauthorized user' };
-  //   throw errorMessage;
-  // }
   await isAuthorized(postId, userId);
   const { title, content } = body;
   if (!title || !content) {
@@ -92,4 +106,11 @@ const deletePost = async (postId, userId) => {
   await BlogPost.destroy({ where: { id: postId } });
 };
 
-module.exports = { categoryExists, createPost, deletePost, getAllPosts, getPostById, updatePost };
+module.exports = { 
+  categoryExists, 
+  createPost,
+  deletePost, 
+  getAllPosts,
+  getByTerm,
+  getPostById,
+  updatePost };
