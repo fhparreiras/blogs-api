@@ -15,7 +15,7 @@ services:
     depends_on:
       - db
     ports:
-      - 3000:3000
+      - 3005:3000
     environment:
       MYSQL_USER: root
       MYSQL_PASSWORD: password
@@ -27,8 +27,8 @@ services:
     platform: linux/x86_64
     restart: always
     ports:
-      - 3306:3306
-      - 33060:33060
+      - 3307:3306
+      - 33061:33060
     environment:
       MYSQL_ROOT_PASSWORD: password
 
