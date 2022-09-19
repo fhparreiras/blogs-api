@@ -6,5 +6,5 @@ module.exports = async (req, res) => {
   const decodedToken = decodeToken(token);
   const myId = decodedToken.id;
   await deleteUserMe(myId);
-  return res.status(204).json();
+  return res.status(204).json({ message: 'Usuário deletado' });
 };
