@@ -49,3 +49,9 @@ Faça o clone do repositório e entre no respectivo diretório através do coman
 
   <br/>
 </details>
+
+## Swagger
+Execute o comando `npm start` ou `npm run debug`
+<br />
+Acesse `http://localhost:{portaSelecionada}/api-docs`. <br />
+Caso a página não seja encontrada, certifique-se de estar na mesma porta em que a aplicação está rodando.
